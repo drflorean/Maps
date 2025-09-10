@@ -58,9 +58,42 @@ ggplot() +
     data=places_sf,
   )
 
-## country level obyect?
+## country level obyect? UK
 places_uk_sf <- places_sf %>% filter(country_code == "GB")
 
 View(places_uk_sf)
 ggplot() + 
   geom_sf(data=places_uk_sf)
+
+## getting country borders polygon
+uk <- gisco_get_countries(resolution = "1", country = "GBR") %>% 
+  st_transform(crsLONGLAT) ## need to transform to same crs
+plot(uk)
+
+###
+ggplot() +
+  geom_sf(
+    data = places_uk_sf,
+    aes(size = pop),
+    color="blue",
+    fill = "blue",
+    alpha = .5
+  )
+
+### with scaled population  
+ggplot() +
+  geom_sf(
+    data = places_uk_sf,
+    aes(size = pop),
+    color="purple",
+    fill = "purple",
+    alpha = .3
+  ) +
+  scale_size(
+    range=c(1,10),
+    breaks = pretty_breaks(n=6)
+  ) +
+  geom_sf(
+    data = uk,
+    color = "grey20", fill = "transparent"
+  )
