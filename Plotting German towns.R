@@ -74,5 +74,5 @@ ggplot() +
     fill = "transparent"
   )
 
-
+germany_sf %>% st_write("germany_sf.shp")
 
