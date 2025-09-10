@@ -64,6 +64,12 @@ plot(de)
 ggplot() +
   geom_sf(
     data=germany_sf,
+<<<<<<< HEAD
+=======
+    color = "purple",
+    fill = "purple",
+    alpha = .5
+>>>>>>> 0ed0791 (fixed color)
   ) +
   geom_sf(
     data = de,
